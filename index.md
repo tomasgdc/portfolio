@@ -5,11 +5,19 @@ title: Home
 
 # Tomas Mikalauskas
 
-Senior Software Engineer | Real-time Systems | Graphics | ML-powered Applications
+<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-weight: 500; font-size: 1rem;">
+  <span>Senior Software Engineer</span>
+  <span>|</span>
+  <span>Real-time Systems</span>
+  <span>|</span>
+  <span>Graphics</span>
+  <span>|</span>
+  <span>ML-powered Applications</span>
+</div>
 
-London · 
-[GitHub](https://github.com/tomasgdc) ·
-[LinkedIn](https://uk.linkedin.com/in/TomasMikalauskas)
+<p>London · 
+<a href="https://github.com/tomasgdc">GitHub</a> ·
+<a href="https://uk.linkedin.com/in/TomasMikalauskas">LinkedIn</a></p>
 
 ---
 
@@ -26,10 +34,9 @@ Innovative and results-driven Senior Software Engineer with extensive experience
 ---
 
 ## Resume
-📄 **[Download Resume (PDF)](/assets/resume/Tomas_Mikalauskas_Resume.pdf)**
+📄 **[Download Resume (PDF)]({{ site.baseurl }}/assets/resume/Tomas_Mikalauskas_Resume.pdf)**
 
 ---
 
 ## Contact
-📧 
 🔗 [GitHub](https://github.com/tomasgdc) · [LinkedIn](https://uk.linkedin.com/in/TomasMikalauskas)
