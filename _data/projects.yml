@@ -1,7 +1,8 @@
-- title: Real-Time ML Capture & Streaming Platform
+- title: Cross-Platform Data Capture Tool and Video Streaming For ML projects
   company: Sony Interactive Entertainment
   period: 2024-Ongoing
-  tech: C/C++, Vulkan, ONNX Runtime, Unreal Engine, PS5
+  tech: C/C++, Vulkan, Agc, Slang, SDL, ONNX Runtime
+  platforms: Linux, Windows, PS5
   bullets:
     - End-to-end GPU-accelerated H.264 encode/decode pipeline using Vulkan
     - Real-time text detection and recognition using ONNX Runtime
@@ -11,6 +12,7 @@
   company: Sony Interactive Entertainment
   period: 2024-2025
   tech: Unreal Engine 5, C++, ONNX
+  platforms: Windows
   bullets:
     - Custom ONNX inference runtime integrated into Unreal Engine
     - Live UI overlays displaying model output
@@ -20,15 +22,16 @@
   company: Sony Interactive Entertainment
   period: 2024-2025
   tech: Unreal Engine 5, C++, Graphics Pipelines
+  platforms: Windows
   bullets:
     - Implemented rasterized G-buffer capture pipeline
     - Enabled scalable dataset generation for ML training
-    - Integrated with Unreal Engine-based research demos
 
 - title: Large-Scale Public Consultation Unreal Engine Application
   company: AtkinsRéalis
   period: 2023
   tech: Unreal Engine 5, C++, ArcGIS
+  platforms: Windows
   bullets:
     - Implemented terrain-aware tree clustering using latitude/longitude data
     - Built location-based spatial queries using ArcGIS APIs
@@ -38,6 +41,8 @@
   company: Disguise
   period: 2022 – Early 2023
   tech: C/C++, Python, RenderDoc, Intel VTune, Superluminal, Wireshark
+  platforms: Windows
+  link: https://www.disguise.one/
   bullets:
     - Improved engine performance via memory pools in hot paths
     - Identified and resolved CPU/GPU bottlenecks using advanced profiling tools
@@ -46,6 +51,8 @@
   company: Sony Interactive Entertainment
   period: 2019 – 2022
   tech: C/C++, Unreal Engine 4, WebSockets, gRPC, Linux, PS5
+  platforms: PS5
+  link: https://www.psdevwiki.com/ps5/IDU_Mode
   bullets:
     - Designed initial kiosk client prototype and core application architecture
     - Developed NFC-based smartphone control using WebSockets and embedded C Mongoose server
@@ -56,14 +63,17 @@
   company: Sony Interactive Entertainment
   period: 2018 – 2019
   tech: C/C++, HLS.js, JavaScript, PS4
+  platforms: PS4
+  link: https://en.wikipedia.org/wiki/PlayStation_Vue
   bullets:
     - Implemented HLS seek/rewind functionality exposed to JavaScript
     - Investigated crash reports and resolved stability issues
 
 - title: GDPR-Compliant Real-Time SaaS Services
-  company: Smartpipe Solutions
+  company: Smartpipe Solutions  (defunct startup)
   period: 2017 – Early 2018
   tech: C/C++, Boost.Asio, Linux, Redis, Nginx
+  platforms: Linux
   bullets:
     - Added logging to Linux servers handling over one million requests
     - Diagnosed and resolved production crashes using system logs and GDB
@@ -72,6 +82,8 @@
   company: Sapiens
   period: 2016 – 2017
   tech: C++, SQL, Windows
+  platforms: Windows
+  link: https://sapiens.com/
   bullets:
     - Implemented backend services and optimized batch jobs processing over one million records
     - Ensured all jobs met strict SLAs and performance benchmarks
