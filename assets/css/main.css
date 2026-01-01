@@ -1,0 +1,41 @@
+:root {
+  --bg: #0d1117;
+  --text: #c9d1d9;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --border: #30363d;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 3rem 2rem;
+}
+
+h1, h2, h3 {
+  color: white;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 4rem;
+  padding-top: 2rem;
+  text-align: center;
+  color: var(--muted);
+}

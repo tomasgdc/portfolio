@@ -1,0 +1,87 @@
+- company: Sony Interactive Entertainment
+  title: Senior Software Engineer (P4)
+  period: Sep 2023 - Present
+  location: London
+  tech: C/C++, Go, Python, Vulkan, ONNX, Unreal Engine 5, AWS, Docker, Kubernetes, Terraform, PS5
+  bullets:
+    - text: Contributed to development of real-time C++ tool for low-latency data capture and video streaming on PC and PS5 for ML workflows
+    - text: Contributed to OS and graphics API abstractions (Vulkan / AGC)
+    - text: Ported CRAFT and CRNN models from PyTorch to ONNX and implemented full EasyOCR pipeline in C++
+    - text: Implemented GPU-based H.264 encoding/decoding using Vulkan to minimize latency
+    - text: Created Unreal Engine 5 plugins for R&D
+      sub_bullets:
+        -  ML inference plugin for running models and displaying results in-game using a custom ONNX inference library
+        - Custom data capture tools for Neural Shadow Mapping to record G-buffers for training data
+    - text: Collaborated with R&D engineers and artists on demos showcased at internal Sony events
+    - text: Conducted technical interviews and contributed to hiring decisions
+
+- company: Here (OpenFin)
+  title: Chromium C++ Developer
+  period: Jun 2023 - Aug 2023
+  location: London
+  tech: C++, Chromium, Electron, GTest, JavaScript
+  bullets:
+    - text: Fixed several issues in the Electron framework
+    - text: Worked directly in the Chromium codebase and C++ testing infrastructure
+
+- company: AtkinsRéalis
+  title: Senior C++ Contractor
+  period: Feb 2023 - Apr 2023
+  location: London
+  tech: Unreal Engine 5, C++, ArcGIS
+  bullets:
+    - text: Developed Unreal Engine application for large-scale public consultation projects
+    - text: Implemented terrain-aware tree clustering using latitude/longitude data
+    - text: Built location-based spatial queries using ArcGIS APIs
+    - text: Designed camera systems for touch-based top-down and ground-level navigation
+
+- company: Disguise
+  title: Senior Software Engineer
+  period: Jun 2022 - Feb 2023
+  location: London
+  tech: C/C++, Python, RenderDoc, Intel VTune, Superluminal, Wireshark
+  bullets:
+    - text: Contributed to in-house D3 C++ engine for live events and virtual production
+    - text: Improved performance via memory pools in critical hot paths
+    - text: Profiled and resolved CPU/GPU bottlenecks using advanced tooling
+
+- company: Sony Interactive Entertainment
+  title: Client Engineer
+  period: May 2019 - May 2022
+  location: London
+  tech: C/C++, Unreal Engine 4, gRPC, REST, WebSockets, Linux, PS5
+  bullets:
+    - text: Key contributor to the PS5 Interactive Display Unit (IDU) project
+    - text: Designed the initial Unreal Engine kiosk prototype and core architecture
+    - text: Implemented NFC-based smartphone control via WebSockets
+    - text: Built embedded C server using Mongoose and integrated Linux NFC drivers
+    - text: Contributed to multiple NDA-covered R&D initiatives
+
+- company: Sony Interactive Entertainment
+  title: Advanced Engineer
+  period: Mar 2018 - May 2019
+  location: London
+  tech: C/C++, HLS.js, JavaScript, PS4
+  bullets:
+    - text: Worked on the PS4 PlayStation Vue video streaming engine
+    - text: Implemented HLS seek/rewind functionality exposed to JavaScript
+    - text: Investigated crash reports and stability issues
+
+- company: Smartpipe Solutions
+  title: C++ Software Engineer
+  period: Jul 2017 - Feb 2018
+  location: Cwmbran
+  tech: C/C++, Boost.Asio, Linux, Redis, Nginx
+  bullets:
+    - text: Contributed to GDPR-compliant real-time SaaS service for mobile operators
+    - text: Added logging to Linux servers handling over one million requests
+    - text: Diagnosed and resolved production crashes using GDB
+
+- company: Sapiens
+  title: Backend Software Developer
+  period: Jan 2016 - Jun 2017
+  location: Cardiff
+  tech: C++, SQL, Windows
+  bullets:
+    - text: Contributed to implementation of a new payroll system based on business requirements
+    - text: Optimized batch jobs processing over one million records under strict SLAs

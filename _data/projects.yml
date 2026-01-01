@@ -1,0 +1,77 @@
+- title: Real-Time ML Capture & Streaming Platform
+  company: Sony Interactive Entertainment
+  period: 2024-Ongoing
+  tech: C/C++, Vulkan, ONNX Runtime, Unreal Engine, PS5
+  bullets:
+    - End-to-end GPU-accelerated H.264 encode/decode pipeline using Vulkan
+    - Real-time text detection and recognition using ONNX Runtime
+    - Cross-platform abstraction over OS and graphics APIs
+
+- title: Unreal Engine ML Plugin
+  company: Sony Interactive Entertainment
+  period: 2024-2025
+  tech: Unreal Engine 5, C++, ONNX
+  bullets:
+    - Custom ONNX inference runtime integrated into Unreal Engine
+    - Live UI overlays displaying model output
+    - Designed for rapid experimentation by researchers and artists
+
+- title: Neural Shadow Mapping Data Capture Tools
+  company: Sony Interactive Entertainment
+  period: 2024-2025
+  tech: Unreal Engine 5, C++, Graphics Pipelines
+  bullets:
+    - Implemented rasterized G-buffer capture pipeline
+    - Enabled scalable dataset generation for ML training
+    - Integrated with Unreal Engine-based research demos
+
+- title: Large-Scale Public Consultation Unreal Engine Application
+  company: AtkinsRéalis
+  period: 2023
+  tech: Unreal Engine 5, C++, ArcGIS
+  bullets:
+    - Implemented terrain-aware tree clustering using latitude/longitude data
+    - Built location-based spatial queries using ArcGIS APIs
+    - Designed camera systems for top-down and ground-level views on touch interfaces
+
+- title: In-House D3 Engine for Live Events
+  company: Disguise
+  period: 2022 – Early 2023
+  tech: C/C++, Python, RenderDoc, Intel VTune, Superluminal, Wireshark
+  bullets:
+    - Improved engine performance via memory pools in hot paths
+    - Identified and resolved CPU/GPU bottlenecks using advanced profiling tools
+
+- title: PS5 Interactive Display Unit (IDU)
+  company: Sony Interactive Entertainment
+  period: 2019 – 2022
+  tech: C/C++, Unreal Engine 4, WebSockets, gRPC, Linux, PS5
+  bullets:
+    - Designed initial kiosk client prototype and core application architecture
+    - Developed NFC-based smartphone control using WebSockets and embedded C Mongoose server
+    - Integrated Linux NXP NFC drivers (PN7150/PN7120)
+    - Contributed to multiple NDA-covered R&D initiatives and internal demos
+
+- title: PS4 PlayStation Vue Video Streaming Engine
+  company: Sony Interactive Entertainment
+  period: 2018 – 2019
+  tech: C/C++, HLS.js, JavaScript, PS4
+  bullets:
+    - Implemented HLS seek/rewind functionality exposed to JavaScript
+    - Investigated crash reports and resolved stability issues
+
+- title: GDPR-Compliant Real-Time SaaS Services
+  company: Smartpipe Solutions
+  period: 2017 – Early 2018
+  tech: C/C++, Boost.Asio, Linux, Redis, Nginx
+  bullets:
+    - Added logging to Linux servers handling over one million requests
+    - Diagnosed and resolved production crashes using system logs and GDB
+
+- title: Payroll System Backend Optimization
+  company: Sapiens
+  period: 2016 – 2017
+  tech: C++, SQL, Windows
+  bullets:
+    - Implemented backend services and optimized batch jobs processing over one million records
+    - Ensured all jobs met strict SLAs and performance benchmarks
