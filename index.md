@@ -40,3 +40,14 @@ Innovative and results-driven Senior Software Engineer with extensive experience
 
 ## Contact
 🔗 [GitHub](https://github.com/tomasgdc) · [LinkedIn](https://uk.linkedin.com/in/TomasMikalauskas)
+
+## Visitors
+{% if site.data.traffic_total %}
+  <p style="font-weight: 500; font-size: 0.9rem; color: #555;">
+    Total visitors to this site: {{ site.data.traffic_total.total }}
+  </p>
+{% else %}
+  <p style="font-weight: 500; font-size: 0.9rem; color: #555;">
+    Visitor count not available yet.
+  </p>
+{% endif %}

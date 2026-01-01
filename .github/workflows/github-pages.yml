@@ -5,6 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+  - cron: '0 0 * * *'  # every day at 00:00 UTC
 
 permissions:
   contents: read
@@ -25,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -34,6 +36,47 @@ jobs:
 
       - name: Install dependencies
         run: bundle install
+
+      # --------------------------
+      # Fetch GitHub Traffic
+      # --------------------------
+      - name: Fetch GitHub Traffic
+        id: traffic
+        run: |
+          mkdir -p _data
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Accept: application/vnd.github+json" \
+               https://api.github.com/repos/${{ github.repository }}/traffic/views \
+               -o _data/traffic.json
+        # GitHub Actions automatically provides a GITHUB_TOKEN secret
+
+      # --------------------------
+      # Update cumulative traffic
+      # --------------------------
+      - name: Update cumulative traffic
+        run: |
+          # Load previous total if it exists
+          if [ -f "_data/traffic_total.json" ]; then
+            prev_total=$(jq '.total' _data/traffic_total.json)
+          else
+            prev_total=0
+          fi
+
+          # Get new count from API
+          new_count=$(jq '.count' _data/traffic.json)
+
+          # Compute updated total
+          total=$((prev_total + new_count))
+
+          # Save total
+          echo "{\"total\": $total}" > _data/traffic_total.json
+
+          # Commit the update (optional, needed if you want the counter in repo)
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add _data/traffic_total.json
+          git commit -m "Update cumulative traffic" || echo "No changes to commit"
+          git push || echo "Push failed (maybe no permission, ignore for now)"
 
       - name: Build Jekyll site
         env:
