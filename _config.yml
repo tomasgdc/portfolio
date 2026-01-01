@@ -1,7 +1,2 @@
-title: "Tomas Mikalauskas"
-description: "Senior Software Engineer | Real-time Systems | Graphics | ML-powered Applications"
 url: "https://tomasgdc.github.io"
-baseurl: ""
-markdown: kramdown
-theme: null
-plugins: []
+baseurl: "/portfolio"

@@ -28,10 +28,17 @@ jobs:
           ruby-version: 3.2
           bundler-cache: true
 
-      - name: Build site
-        run: bundle exec jekyll build --destination _site
+      - name: Install dependencies
+        run: bundle install
 
-      - name: Upload Pages artifact
+      - name: Build Jekyll site
+        env:
+          JEKYLL_ENV: production      # ensures production mode
+        run: bundle exec jekyll build \
+          --destination _site \
+          --config _config.yml,_config_prod.yml  # merge main and production configs
+
+      - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
