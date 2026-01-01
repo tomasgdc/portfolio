@@ -8,11 +8,21 @@ permalink: /projects/
 
 {% for project in site.data.projects %}
 ### {{ project.period }}
-#### {{ project.title }} ({{ project.company }})
+#### {{ project.title }} 
+**Company:** 
+{% if project.link %}
+[{{ project.company }}]({{ project.link }})
+{% else %}
+{{ project.company }}
+{% endif %}
+
 **Tech:** {{ project.tech }}
+**Platforms:** {{ project.platforms }}
+
 <ul>
   {% for bullet in project.bullets %}
     <li>{{ bullet }}</li>
   {% endfor %}
 </ul>
+
 {% endfor %}
