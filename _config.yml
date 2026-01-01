@@ -1,2 +1,26 @@
-url: "https://tomasgdc.github.io"
-baseurl: "/portfolio"
+# Build settings
+markdown: kramdown
+theme: minima
+
+# GitHub metadata (safe locally)
+github:
+  repository_nwo: "tomasgdc/portfolio"  # ensures jekyll-github-metadata works locally
+  owner: "tomasgdc"
+  repository: "portfolio"
+
+# Permalinks
+permalink: pretty
+
+# Exclude files from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle
+  - README.md
+
+# Optional: enable GitHub Pages features
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-github-metadata
