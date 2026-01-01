@@ -27,11 +27,12 @@
     - Implemented rasterized G-buffer capture pipeline
     - Enabled scalable dataset generation for ML training
 
-- title: Large-Scale Public Consultation Unreal Engine Application
+- title: National Grid Community Engagement & 3D Visualisation Tool
   company: AtkinsRéalis
   period: 2023
   tech: Unreal Engine 5, C++, ArcGIS
   platforms: Windows
+  link: https://www.atkinsrealis.com/en/projects/helping-national-grid-engage-with-local-communities
   bullets:
     - Implemented terrain-aware tree clustering using latitude/longitude data
     - Built location-based spatial queries using ArcGIS APIs
