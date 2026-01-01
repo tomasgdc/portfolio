@@ -19,9 +19,9 @@ Innovative and results-driven Senior Software Engineer with extensive experience
 ---
 
 ## Quick Links
-- [Experience](/experience)
-- [Projects](/projects)
-- [Blog](/blog)
+- [Experience]({{ site.baseurl }}/experience/)
+- [Projects]({{ site.baseurl }}/projects/)
+- [Blog]({{ site.baseurl }}/blog/)
 
 ---
 
