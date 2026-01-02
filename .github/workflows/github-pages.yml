@@ -146,6 +146,9 @@ jobs:
           done
           echo "Merged traffic snapshots into _data/traffic_history.json"
 
+          echo "=== Traffic History ==="
+          cat _data/traffic_history.json
+
       # --------------------------
       # Merge all GitHub API traffic into one file
       # --------------------------
