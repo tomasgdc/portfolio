@@ -117,11 +117,6 @@ jobs:
           if [ "$old_json" != "$new_json" ]; then
             echo "$new_json" > _data/traffic_total.json
 
-            # Daily snapshot for traffic_history.json
-            date_iso=$(date +'%Y-%m-%d')
-            snapshot_file="_data/traffic_history_snapshot/${date_iso}.json"
-            jq -n --arg d "$date_iso" --arg v "$total_views" --arg u "$total_uniques" '{date: $d, views: ($v|tonumber), uniques: ($u|tonumber)}' > "$snapshot_file"
-
             git config user.name "github-actions"
             git config user.email "github-actions@github.com"
             git add _data/traffic_total.json "$snapshot_file"
@@ -131,6 +126,24 @@ jobs:
             echo "No traffic changes detected."
           fi
 
+          # --------------------------
+          # Save daily snapshot (flattened arrays)
+          # --------------------------
+          date_iso=$(date +'%Y-%m-%d')
+          jq -n \
+            --arg d "$date_iso" \
+            --slurpfile views _data/traffic_views.json \
+            --slurpfile clones _data/traffic_clones.json \
+            --slurpfile referrers _data/traffic_referrers.json \
+            --slurpfile paths _data/traffic_paths.json \
+            '{
+              date: $d,
+              views: ($views[0].views // []),
+              clones: ($clones[0].clones // []),
+              referrers: ($referrers[0] // []),
+              paths: ($paths[0] // [])
+            }' > _data/traffic_history_snapshot/${date_iso}.json
+            
       # --------------------------
       # Merge daily snapshots into single history
       # --------------------------
