@@ -116,7 +116,7 @@ jobs:
           old_json=$(cat _data/traffic_total.json 2>/dev/null || echo '{}')
           if [ "$old_json" != "$new_json" ]; then
             echo "$new_json" > _data/traffic_total.json
-            
+
             # --------------------------
             # Daily snapshot for traffic_history.json (flattened)
             # --------------------------
@@ -140,14 +140,18 @@ jobs:
       - name: Merge traffic snapshots
         run: |
           mkdir -p _data
+          # Start with an empty array
           echo "[]" > _data/traffic_history.json
-          for f in _data/traffic_history_snapshot/*.json; do
+
+          # Loop over snapshot files sorted by date
+          for f in $(ls _data/traffic_history_snapshot/*.json | sort); do
             [ -e "$f" ] || continue
-            jq -s '.[0] + [.[1]] | flatten' _data/traffic_history.json "$f" > _data/traffic_history.tmp.json
+            # Read existing history and append the new snapshot object
+            jq '. + [input]' _data/traffic_history.json "$f" > _data/traffic_history.tmp.json
             mv _data/traffic_history.tmp.json _data/traffic_history.json
           done
-          echo "Merged snapshots into _data/traffic_history.json"
 
+          echo "Merged snapshots into _data/traffic_history.json"
           echo "=== Traffic History ==="
           cat _data/traffic_history.json
 
