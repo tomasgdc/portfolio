@@ -51,40 +51,49 @@ jobs:
         # GitHub Actions automatically provides a GITHUB_TOKEN secret
 
       # --------------------------
-      # Update cumulative traffic
+      # Update cumulative traffic (views + uniques)
       # --------------------------
       - name: Update cumulative traffic
         run: |
-          # Load previous total if it exists
           if [ -f "_data/traffic_total.json" ]; then
-            prev_total=$(jq '.total' _data/traffic_total.json)
+            total_views=$(jq '.views' _data/traffic_total.json)
+            total_uniques=$(jq '.uniques' _data/traffic_total.json)
             last_ts=$(jq -r '.last_timestamp' _data/traffic_total.json)
           else
-            prev_total=0
+            total_views=0
+            total_uniques=0
             last_ts="1970-01-01T00:00:00Z"
           fi
 
-        # Sum only NEW views
-          added=$(jq --arg last "$last_ts" '
+        # Sum ONLY new data
+          added_views=$(jq --arg last "$last_ts" '
             [.views[]
               | select(.timestamp > $last)
               | .count] | add // 0
           ' _data/traffic.json)
 
-          # Latest timestamp
+          added_uniques=$(jq --arg last "$last_ts" '
+            [.views[]
+              | select(.timestamp > $last)
+              | .uniques] | add // 0
+          ' _data/traffic.json)
+
+        # Latest timestamp
           new_ts=$(jq -r '.views[-1].timestamp' _data/traffic.json)
 
-          total=$((total + added))
+          total_views=$((total_views + added_views))
+          total_uniques=$((total_uniques + added_uniques))
 
           echo "{
-            \"total\": $total,
+            \"views\": $total_views,
+            \"uniques\": $total_uniques,
             \"last_timestamp\": \"$new_ts\"
           }" > _data/traffic_total.json
 
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add _data/traffic_total.json
-          git commit -m "Update cumulative traffic" || true
+          git commit -m \"Update cumulative traffic\" || true
           git push
 
       - name: Build Jekyll site
