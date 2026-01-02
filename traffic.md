@@ -12,19 +12,23 @@ permalink: /traffic/
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
   <div style="flex: 1; min-width: 150px; padding: 1rem; background: #1e90ff; color: white; border-radius: 8px; text-align:center;">
     <h3>Total Views</h3>
-    <p style="font-weight: bold; font-size: 1.5rem;">{{ site.data.traffic_total.views }}</p>
+    <p style="font-weight: bold; font-size: 1.5rem;">{{ site.data.traffic_total.views | default: 0 }}</p>
   </div>
   <div style="flex: 1; min-width: 150px; padding: 1rem; background: #8a2be2; color: white; border-radius: 8px; text-align:center;">
     <h3>Unique Visitors</h3>
-    <p style="font-weight: bold; font-size: 1.5rem;">{{ site.data.traffic_total.uniques }}</p>
+    <p style="font-weight: bold; font-size: 1.5rem;">{{ site.data.traffic_total.uniques | default: 0 }}</p>
   </div>
   <div style="flex: 1; min-width: 150px; padding: 1rem; background: #ff8c00; color: white; border-radius: 8px; text-align:center;">
     <h3>Total Clones</h3>
-    <p style="font-weight: bold; font-size: 1.5rem;">{{ site.data.traffic_full.clones | map: "count" | sum }}</p>
+    <p style="font-weight: bold; font-size: 1.5rem;">
+      {{ site.data.traffic_full.clones | map: "count" | sum | default: 0 }}
+    </p>
   </div>
   <div style="flex: 1; min-width: 150px; padding: 1rem; background: #32cd32; color: white; border-radius: 8px; text-align:center;">
     <h3>Unique Cloners</h3>
-    <p style="font-weight: bold; font-size: 1.5rem;">{{ site.data.traffic_full.clones | map: "uniques" | sum }}</p>
+    <p style="font-weight: bold; font-size: 1.5rem;">
+      {{ site.data.traffic_full.clones | map: "uniques" | sum | default: 0 }}
+    </p>
   </div>
 </div>
 
