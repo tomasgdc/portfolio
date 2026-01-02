@@ -16,7 +16,7 @@
   bullets:
     - Custom ONNX inference runtime integrated into Unreal Engine
     - Live UI overlays displaying model output
-    - Designed for rapid experimentation by researchers and artists
+    - Designed for rapid experimentation
 
 - title: Neural Shadow Mapping Data Capture Tools
   company: Sony Interactive Entertainment
@@ -40,7 +40,7 @@
 
 - title: In-House D3 Engine for Live Events
   company: Disguise
-  period: 2022 – Early 2023
+  period: 2022 - Early 2023
   tech: C/C++, Python, RenderDoc, Intel VTune, Superluminal, Wireshark
   platforms: Windows
   link: https://www.disguise.one/
@@ -50,7 +50,7 @@
 
 - title: PS5 Interactive Display Unit (IDU)
   company: Sony Interactive Entertainment
-  period: 2019 – 2022
+  period: 2019 - 2022
   tech: C/C++, Unreal Engine 4, WebSockets, gRPC, Linux, PS5
   platforms: PS5
   link: https://www.psdevwiki.com/ps5/IDU_Mode
@@ -62,7 +62,7 @@
 
 - title: PS4 PlayStation Vue Video Streaming Engine
   company: Sony Interactive Entertainment
-  period: 2018 – 2019
+  period: 2018 - 2019
   tech: C/C++, HLS.js, JavaScript, PS4
   platforms: PS4
   link: https://en.wikipedia.org/wiki/PlayStation_Vue
@@ -72,7 +72,7 @@
 
 - title: GDPR-Compliant Real-Time SaaS Services
   company: Smartpipe Solutions  (defunct startup)
-  period: 2017 – Early 2018
+  period: 2017 - Early 2018
   tech: C/C++, Boost.Asio, Linux, Redis, Nginx
   platforms: Linux
   bullets:
@@ -81,7 +81,7 @@
 
 - title: Payroll System Backend Optimization
   company: Sapiens
-  period: 2016 – 2017
+  period: 2016 - 2017
   tech: C++, SQL, Windows
   platforms: Windows
   link: https://sapiens.com/
