@@ -41,7 +41,7 @@
 - title: In-House D3 Engine for Live Events
   company: Disguise
   period: 2022 - Early 2023
-  tech: C/C++, Python, RenderDoc, Intel VTune, Superluminal, Wireshark
+  tech: C/C++, Python, DirectX, RenderDoc, Intel VTune, Superluminal, Wireshark, RabbitMQ
   platforms: Windows
   link: https://www.disguise.one/
   bullets:
