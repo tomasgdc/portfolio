@@ -167,6 +167,9 @@ jobs:
               paths: ($paths[0] // [])
             }' > _data/traffic_full.json
 
+          echo "=== Traffic full data ==="
+          cat _data/traffic_full.json
+
       # --------------------------
       # Build Jekyll site
       # --------------------------
