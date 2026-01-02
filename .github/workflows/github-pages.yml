@@ -65,7 +65,6 @@ jobs:
             last_ts="1970-01-01T00:00:00Z"
           fi
 
-        # Sum ONLY new data
           added_views=$(jq --arg last "$last_ts" '
             [.views[]
               | select(.timestamp > $last)
@@ -78,7 +77,6 @@ jobs:
               | .uniques] | add // 0
           ' _data/traffic.json)
 
-        # Latest timestamp
           new_ts=$(jq -r '.views[-1].timestamp' _data/traffic.json)
 
           total_views=$((total_views + added_views))
@@ -93,7 +91,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add _data/traffic_total.json
-          git commit -m \"Update cumulative traffic\" || true
+          git commit -m "Update cumulative traffic" || true
           git push
 
       - name: Build Jekyll site
