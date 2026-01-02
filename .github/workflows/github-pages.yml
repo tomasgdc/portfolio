@@ -44,10 +44,31 @@ jobs:
         id: traffic
         run: |
           mkdir -p _data _data/traffic_history
+
+          # Fetch views
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                -H "Accept: application/vnd.github+json" \
                https://api.github.com/repos/${{ github.repository }}/traffic/views \
-               -o _data/traffic.json || echo '{"count":0,"uniques":0,"views":[]}' > _data/traffic.json
+               -o _data/traffic.json || echo '{"count":0,"uniques":0,"views":[]}' > _data/traffic_views.json
+
+          # Fetch clones
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Accept: application/vnd.github+json" \
+               https://api.github.com/repos/${{ github.repository }}/traffic/clones \
+               -o _data/traffic_clones.json || echo '{"count":0,"uniques":0,"clones":[]}' > _data/traffic_clones.json
+
+          # Fetch referrers
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Accept: application/vnd.github+json" \
+               https://api.github.com/repos/${{ github.repository }}/traffic/popular/referrers \
+               -o _data/traffic_referrers.json || echo '[]' > _data/traffic_referrers.json
+
+
+          # Fetch popular paths
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Accept: application/vnd.github+json" \
+               https://api.github.com/repos/${{ github.repository }}/traffic/popular/paths \
+               -o _data/traffic_paths.json || echo '[]' > _data/traffic_paths.json
 
       # --------------------------
       # Update cumulative traffic (views + uniques)
@@ -68,10 +89,10 @@ jobs:
           # Compute new counts from API (ignore nulls)
           added_views=$(jq --arg last "$last_ts" '
             [(.views // []) | .[] | select(.timestamp > $last) | .count] | add // 0
-          ' _data/traffic.json)
+          ' _data/traffic_views.json)
           added_uniques=$(jq --arg last "$last_ts" '
             [(.views // []) | .[] | select(.timestamp > $last) | .uniques] | add // 0
-          ' _data/traffic.json)
+          ' _data/traffic_views.json)
 
           # Compute new timestamp
           new_ts=$(jq -r '
@@ -79,7 +100,7 @@ jobs:
             then (.views | last | .timestamp)
             else $last
             end
-          ' --arg last "$last_ts" _data/traffic.json)
+          ' --arg last "$last_ts" _data/traffic_views.json)
 
           # Update totals
           total_views=$((prev_views + added_views))
@@ -129,7 +150,7 @@ jobs:
           done
 
           echo "Merged traffic snapshots into _data/traffic_history.json"
-          
+
       # --------------------------
       # Build Jekyll site
       # --------------------------
