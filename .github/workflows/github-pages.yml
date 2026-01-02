@@ -71,7 +71,7 @@ jobs:
                -o _data/traffic_paths.json || echo '[]' > _data/traffic_paths.json
 
       # --------------------------
-      # Update cumulative traffic (views + uniques)
+      # Update cumulative traffic and daily snapshot
       # --------------------------
       - name: Update cumulative traffic
         run: |
@@ -151,6 +151,27 @@ jobs:
 
           echo "Merged traffic snapshots into _data/traffic_history.json"
 
+      # --------------------------
+      # Merge all GitHub API traffic into one file
+      # --------------------------
+      - name: Merge full traffic data
+        run: |
+          jq -n \
+            --slurpfile views _data/traffic_views.json \
+            --slurpfile clones _data/traffic_clones.json \
+            --slurpfile referrers _data/traffic_referrers.json \
+            --slurpfile paths _data/traffic_paths.json \
+            '{
+              views: $views[0].views,
+              views_count: $views[0].count,
+              views_uniques: $views[0].uniques,
+              clones: $clones[0].clones,
+              clones_count: $clones[0].count,
+              clones_uniques: $clones[0].uniques,
+              referrers: $referrers[0],
+              paths: $paths[0]
+            }' > _data/traffic_full.json
+            
       # --------------------------
       # Build Jekyll site
       # --------------------------
