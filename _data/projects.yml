@@ -51,7 +51,7 @@
 - title: PS5 Interactive Display Unit (IDU)
   company: Sony Interactive Entertainment
   period: 2019 - 2022
-  tech: C/C++, Unreal Engine 4, WebSockets, gRPC, Linux, PS5
+  tech: C/C++, Unreal Engine 4, WebSockets, gRPC, Linux
   platforms: PS5
   link: https://www.psdevwiki.com/ps5/IDU_Mode
   bullets:
@@ -63,7 +63,7 @@
 - title: PS4 PlayStation Vue Video Streaming Engine
   company: Sony Interactive Entertainment
   period: 2018 - 2019
-  tech: C/C++, HLS.js, JavaScript, PS4
+  tech: C/C++, HLS.js, JavaScript
   platforms: PS4
   link: https://en.wikipedia.org/wiki/PlayStation_Vue
   bullets:
@@ -73,7 +73,7 @@
 - title: GDPR-Compliant Real-Time SaaS Services
   company: Smartpipe Solutions  (defunct startup)
   period: 2017 - Early 2018
-  tech: C/C++, Boost.Asio, Linux, Redis, Nginx
+  tech: C/C++, Boost.Asio, Redis, Nginx
   platforms: Linux
   bullets:
     - Added logging to Linux servers handling over one million requests
@@ -82,7 +82,7 @@
 - title: Payroll System Backend Optimization
   company: Sapiens
   period: 2016 - 2017
-  tech: C++, SQL, Windows
+  tech: C++, SQL, Windows MSMQ
   platforms: Windows
   link: https://sapiens.com/
   bullets:
