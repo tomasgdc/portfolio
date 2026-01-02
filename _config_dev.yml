@@ -1,0 +1,9 @@
+# Build settings
+markdown: kramdown
+theme: minima
+
+# _config_dev.yml
+baseurl: ""   # no prefix locally
+
+# Permalinks
+permalink: pretty
