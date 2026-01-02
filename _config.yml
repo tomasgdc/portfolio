@@ -2,8 +2,11 @@
 markdown: kramdown
 theme: minima
 
+# GitHub Pages base URL (for repo pages)
+baseurl: "/portfolio"
+
 # REQUIRED for jekyll-github-metadata (especially for cron jobs)
-repository: /portfolio
+repository: "tomasgdc/portfolio"
 
 # GitHub metadata (safe locally)
 github:
