@@ -68,6 +68,18 @@ jobs:
                https://api.github.com/repos/${{ github.repository }}/traffic/popular/paths \
                -o _data/traffic_paths.json || echo '[]' > _data/traffic_paths.json
 
+          echo "=== Views API ==="
+          cat _data/traffic_views.json
+
+          echo "=== Clones API ==="
+          cat _data/traffic_clones.json
+
+          echo "=== Referrers API ==="
+          cat _data/traffic_referrers.json
+
+          echo "=== Paths API ==="
+          cat _data/traffic_paths.json
+          
       # --------------------------
       # Update cumulative totals & daily snapshot
       # --------------------------
@@ -94,6 +106,11 @@ jobs:
           # Update totals
           total_views=$((prev_views + added_views))
           total_uniques=$((prev_uniques + added_uniques))
+
+          echo "Previous totals: views=$prev_views uniques=$prev_uniques last_ts=$last_ts"
+          echo "New additions: added_views=$added_views added_uniques=$added_uniques"
+          echo "New totals: total_views=$total_views total_uniques=$total_uniques"
+          echo "New timestamp: $new_ts"
 
           new_json=$(jq -n --arg v "$total_views" --arg u "$total_uniques" --arg t "$new_ts" \
             '{views: ($v|tonumber), uniques: ($u|tonumber), last_timestamp: $t}')
