@@ -9,7 +9,7 @@ on:
   - cron: '0 0 * * *'  # every day at 00:00 UTC
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -58,25 +58,34 @@ jobs:
           # Load previous total if it exists
           if [ -f "_data/traffic_total.json" ]; then
             prev_total=$(jq '.total' _data/traffic_total.json)
+            last_ts=$(jq -r '.last_timestamp' _data/traffic_total.json)
           else
             prev_total=0
+            last_ts="1970-01-01T00:00:00Z"
           fi
 
-          # Get new count from API
-          new_count=$(jq '.count' _data/traffic.json)
+        # Sum only NEW views
+          added=$(jq --arg last "$last_ts" '
+            [.views[]
+              | select(.timestamp > $last)
+              | .count] | add // 0
+          ' _data/traffic.json)
 
-          # Compute updated total
-          total=$((prev_total + new_count))
+          # Latest timestamp
+          new_ts=$(jq -r '.views[-1].timestamp' _data/traffic.json)
 
-          # Save total
-          echo "{\"total\": $total}" > _data/traffic_total.json
+          total=$((total + added))
 
-          # Commit the update (optional, needed if you want the counter in repo)
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          echo "{
+            \"total\": $total,
+            \"last_timestamp\": \"$new_ts\"
+          }" > _data/traffic_total.json
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add _data/traffic_total.json
-          git commit -m "Update cumulative traffic" || echo "No changes to commit"
-          git push || echo "Push failed (maybe no permission, ignore for now)"
+          git commit -m "Update cumulative traffic" || true
+          git push
 
       - name: Build Jekyll site
         env:
