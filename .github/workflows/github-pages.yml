@@ -44,29 +44,28 @@ jobs:
         run: |
           mkdir -p _data _data/traffic_history_snapshot
 
-          # Fetch views
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               -H "Accept: application/vnd.github+json" \
-               https://api.github.com/repos/${{ github.repository }}/traffic/views \
-               -o _data/traffic_views.json || echo '{"count":0,"uniques":0,"views":[]}' > _data/traffic_views.json
+          # Use PAT instead of GITHUB_TOKEN
+          TOKEN="${{ secrets.TRAFFIC_PAT }}"
 
-          # Fetch clones
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               -H "Accept: application/vnd.github+json" \
-               https://api.github.com/repos/${{ github.repository }}/traffic/clones \
-               -o _data/traffic_clones.json || echo '{"count":0,"uniques":0,"clones":[]}' > _data/traffic_clones.json
+          curl -s -H "Authorization: token $TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/${{ github.repository }}/traffic/views \
+              -o _data/traffic_views.json || echo '{"count":0,"uniques":0,"views":[]}' > _data/traffic_views.json
 
-          # Fetch referrers
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               -H "Accept: application/vnd.github+json" \
-               https://api.github.com/repos/${{ github.repository }}/traffic/popular/referrers \
-               -o _data/traffic_referrers.json || echo '[]' > _data/traffic_referrers.json
+          curl -s -H "Authorization: token $TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/${{ github.repository }}/traffic/clones \
+              -o _data/traffic_clones.json || echo '{"count":0,"uniques":0,"clones":[]}' > _data/traffic_clones.json
 
-          # Fetch popular paths
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               -H "Accept: application/vnd.github+json" \
-               https://api.github.com/repos/${{ github.repository }}/traffic/popular/paths \
-               -o _data/traffic_paths.json || echo '[]' > _data/traffic_paths.json
+          curl -s -H "Authorization: token $TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/${{ github.repository }}/traffic/popular/referrers \
+              -o _data/traffic_referrers.json || echo '[]' > _data/traffic_referrers.json
+
+          curl -s -H "Authorization: token $TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/${{ github.repository }}/traffic/popular/paths \
+              -o _data/traffic_paths.json || echo '[]' > _data/traffic_paths.json
 
           echo "=== Views API ==="
           cat _data/traffic_views.json
@@ -79,7 +78,7 @@ jobs:
 
           echo "=== Paths API ==="
           cat _data/traffic_paths.json
-          
+
       # --------------------------
       # Update cumulative totals & daily snapshot
       # --------------------------
