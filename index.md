@@ -52,3 +52,7 @@ Innovative and results-driven Senior Software Engineer with extensive experience
     Visitor statistics not available yet.
   </p>
 {% endif %}
+
+<p style="font-weight: 500; font-size: 0.9rem; color: #555;">
+  <a href="{{ site.baseurl }}/traffic/">View full traffic dashboard →</a>
+</p>

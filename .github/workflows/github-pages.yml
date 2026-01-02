@@ -97,7 +97,7 @@ jobs:
             echo "$new_json" > _data/traffic_total.json
 
             # Daily snapshot
-            snapshot_file="_data/traffic_history/$(date +'%Y-%m-%d').json"
+            snapshot_file="_data/traffic_history_snapshot/$(date +'%Y-%m-%d').json"
             echo "$new_json" > "$snapshot_file"
 
             git config user.name "github-actions"
@@ -109,6 +109,27 @@ jobs:
             echo "No traffic changes detected."
           fi
 
+      # --------------------------
+      # Merge daily snapshots into single history
+      # --------------------------
+      - name: Merge traffic snapshots
+        run: |
+          mkdir -p _data
+          # Start empty array
+          echo "[]" > _data/traffic_history.json
+
+          # Loop over snapshots sorted by filename (handles spaces safely)
+          for f in _data/traffic_history_snapshot/*.json; do
+            # Skip if no files exist
+            [ -e "$f" ] || continue
+
+            # Merge existing history with new snapshot
+            jq -s '.[0] + [.[1]] | flatten' _data/traffic_history.json "$f" > _data/traffic_history.tmp.json
+            mv _data/traffic_history.tmp.json _data/traffic_history.json
+          done
+
+          echo "Merged traffic snapshots into _data/traffic_history.json"
+          
       # --------------------------
       # Build Jekyll site
       # --------------------------
