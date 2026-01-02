@@ -2,6 +2,9 @@
 markdown: kramdown
 theme: minima
 
+# REQUIRED for jekyll-github-metadata (especially for cron jobs)
+repository: tomasgdc/portfolio
+
 # GitHub metadata (safe locally)
 github:
   repository_nwo: "tomasgdc/portfolio"  # ensures jekyll-github-metadata works locally
