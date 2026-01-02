@@ -66,18 +66,25 @@ jobs:
           fi
 
           added_views=$(jq --arg last "$last_ts" '
-            [.views[]
+            [(.views // [])
+              | .[]
               | select(.timestamp > $last)
               | .count] | add // 0
           ' _data/traffic.json)
 
           added_uniques=$(jq --arg last "$last_ts" '
-            [.views[]
+            [(.views // [])
+              | .[]
               | select(.timestamp > $last)
               | .uniques] | add // 0
           ' _data/traffic.json)
 
-          new_ts=$(jq -r '.views[-1].timestamp' _data/traffic.json)
+          new_ts=$(jq -r '
+            if (.views // []) | length > 0
+            then (.views | last | .timestamp)
+            else $last
+            end
+          ' --arg last "$last_ts" _data/traffic.json)
 
           total_views=$((total_views + added_views))
           total_uniques=$((total_uniques + added_uniques))
@@ -93,7 +100,7 @@ jobs:
           git add _data/traffic_total.json
           git commit -m "Update cumulative traffic" || true
           git push
-
+          
       - name: Build Jekyll site
         env:
           JEKYLL_ENV: production      # ensures production mode
