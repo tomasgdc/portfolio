@@ -102,26 +102,25 @@ jobs:
           # Compute latest timestamp
           new_ts=$(jq -r --arg last "$last_ts" 'if (.views // []) | length > 0 then (.views | last | .timestamp) else $last end' _data/traffic_views.json)
 
-          # Update totals
+          # New cumulative totals
           total_views=$((prev_views + added_views))
           total_uniques=$((prev_uniques + added_uniques))
+          new_json=$(jq -n --arg v "$total_views" --arg u "$total_uniques" --arg t "$new_ts" '{views: ($v|tonumber), uniques: ($u|tonumber), last_timestamp: $t}')
 
           echo "Previous totals: views=$prev_views uniques=$prev_uniques last_ts=$last_ts"
           echo "New additions: added_views=$added_views added_uniques=$added_uniques"
           echo "New totals: total_views=$total_views total_uniques=$total_uniques"
           echo "New timestamp: $new_ts"
 
-          new_json=$(jq -n --arg v "$total_views" --arg u "$total_uniques" --arg t "$new_ts" \
-            '{views: ($v|tonumber), uniques: ($u|tonumber), last_timestamp: $t}')
-
           # Commit only if changed
           old_json=$(cat _data/traffic_total.json 2>/dev/null || echo '{}')
           if [ "$old_json" != "$new_json" ]; then
             echo "$new_json" > _data/traffic_total.json
 
-            # Daily snapshot
-            snapshot_file="_data/traffic_history_snapshot/$(date +'%Y-%m-%d').json"
-            echo "$new_json" > "$snapshot_file"
+            # Daily snapshot for traffic_history.json
+            date_iso=$(date +'%Y-%m-%d')
+            snapshot_file="_data/traffic_history_snapshot/${date_iso}.json"
+            jq -n --arg d "$date_iso" --arg v "$total_views" --arg u "$total_uniques" '{date: $d, views: ($v|tonumber), uniques: ($u|tonumber)}' > "$snapshot_file"
 
             git config user.name "github-actions"
             git config user.email "github-actions@github.com"
@@ -144,7 +143,7 @@ jobs:
             jq -s '.[0] + [.[1]] | flatten' _data/traffic_history.json "$f" > _data/traffic_history.tmp.json
             mv _data/traffic_history.tmp.json _data/traffic_history.json
           done
-          echo "Merged traffic snapshots into _data/traffic_history.json"
+          echo "Merged snapshots into _data/traffic_history.json"
 
           echo "=== Traffic History ==="
           cat _data/traffic_history.json
