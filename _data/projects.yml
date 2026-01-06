@@ -8,6 +8,18 @@
     - Real-time text detection and recognition using ONNX Runtime
     - Cross-platform abstraction over OS and graphics APIs
 
+- title: Unreal Engine Data Driven Bug Injection Plugin
+  company: Sony Interactive Entertainment
+  period: 2024-2025
+  tech: Unreal Engine 5, C++
+  platforms: Windows
+  bullets:
+    - Bugs can be injected into the game via a provided Data Asset file and can be triggered via the command line
+    - Bugs that are visible in the current viewpoint are displayed and can be toggled on and off via the command line
+    - A CSV dump containing a list of bug objects visible in the current viewpoint, along with a full-screen RGB image of the viewpoint, can be triggered via the command line
+    - The full-screen RGB image of the viewpoint is captured using the Render Dependency Graph and is synchronized with async collision detection, which is used to determine whether a bug object is visible in the current viewpoint.
+    
+
 - title: Unreal Engine ML Plugin
   company: Sony Interactive Entertainment
   period: 2024-2025
