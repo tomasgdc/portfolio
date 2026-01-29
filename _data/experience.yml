@@ -12,7 +12,8 @@
       sub_bullets:
         - ML inference plugin for running models and displaying results in-game using a custom ONNX inference library
         - Custom data capture tools for Neural Shadow Mapping to record G-buffers for training data
-    - text: Collaborated with R&D engineers and artists on demos showcased at internal Sony events
+        - Data driven bug injection plugin for training ML models for Anomaly Detection
+    - text: Collaborated with R&D engineers and artists on demos showcased at internal Sony events that were built on Unreal Engine 5
     - text: Conducted technical interviews and contributed to hiring decisions
 
 - company: Here (OpenFin)

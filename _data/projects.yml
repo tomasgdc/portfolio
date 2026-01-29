@@ -5,7 +5,7 @@
   platforms: Linux, Windows, PS5
   bullets:
     - End-to-end GPU-accelerated H.264 encode/decode pipeline using Vulkan
-    - Real-time text detection and recognition using ONNX Runtime
+    - Ported CRAFT and CRNN models from PyTorch to ONNX and implemented full EasyOCR pipeline in C++ for real-time text detection.
     - Cross-platform abstraction over OS and graphics APIs
 
 - title: Unreal Engine Data Driven Bug Injection Plugin
